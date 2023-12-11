@@ -4,26 +4,27 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Office extends Model
+class Ticket extends Model
 {
-    protected $table            = 'offices';
+    protected $table            = 'tickets';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'code',
-        'name',
-        'email'
+        'first_name',
+        'last_name',
+        'email',
+        'office_id',
+        'state',
+        'severity',
+        'description',
+        'remarks'
     ];
 
-
-
-    
-
     // Dates
-    protected $useTimestamps = true;
+    protected $useTimestamps = false;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
@@ -31,9 +32,14 @@ class Office extends Model
 
     // Validation
     protected $validationRules      = [
-        'code'=>'required|min_length[3]|max_length[255]',
-        'name'=>'required|min_length[3]|max_length[255]',
-        'email'=>'required|valid_email|min_length[3]|max_length[255]'
+        'first_name' => 'required|min_length[3]|max_length[255]',
+        'last_name' => 'required|min_length[3]|max_length[255]',
+        'email' => 'required|valid_email',
+        'office_id' => 'required',
+        'state' => 'required',
+        'severity' => 'required',
+        'description' => 'required|min_length[3]|max_length[255]',
+        'remarks' => 'required|min_length[3]|max_length[255]'
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
