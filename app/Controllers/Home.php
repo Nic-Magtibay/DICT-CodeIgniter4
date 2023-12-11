@@ -160,12 +160,9 @@ class Home extends BaseController
         // $query = $builder->get();
 
 
-        $result = $query->getResult();
-        return json_encode($result);
-        
-        
-        
-
+        // $result = $query->getResult();
+        // return json_encode($result);
+    
 
         return view('welcome_message');
     }
