@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use CodeIgniter\RESTful\ResourceController;
-
+use CodeIgniter\Http\Response;
 class OfficeController extends ResourceController
 {
     /**
@@ -43,7 +43,26 @@ class OfficeController extends ResourceController
      */
     public function create()
     {
-        //
+        $officeModel = new \App\Models\Office();
+        $data = $this->request->getPost();
+
+        if(!$officeModel->validate($data)){
+            $response = array(
+                'status' =>'error',
+                'message' => $officeModel->errors()
+            );
+
+            return $this->response->setStatusCode(Response::HTTP_BAD_REQUEST)->setJSON
+            ($response);
+        }
+        $officeModel->insert($data);
+        $response = array(
+            'status' =>'success',
+            'message' => "Office Created Successfully"
+        );
+
+        return $this->response->setStatusCode(Response::HTTP_CREATED)->setJSON
+        ($response);
     }
 
     /**
