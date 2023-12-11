@@ -8,40 +8,42 @@ class OfficeTable extends Migration
 {
     public function up()
     {
-        //
-        $fields=[
-            'id'=> [
-                'type' => 'INT',
-                'constraint'=>11,
+        $fields = [
+            'id' => [
+                'type' => 'INT', // INT(11)
+                'constraint' => 11,
                 'unsigned' => true,
-                'auto_increment' =>true
+                'auto_increment' => true,
             ],
             'code' => [
-                'type' => 'VARCHAR',
-                'constraint' =>255,
-                'null' => false
+                'type' => 'VARCHAR', // VARCHAR(255)
+                'constraint' => 255,
+                'null' => false,
+            ],
+            'name' => [
+                'type' => 'VARCHAR', // VARCHAR(255)
+                'constraint' => 255,
+                'null' => false,
             ],
             'email' => [
-                'type' => 'VARCHAR',
-                'contraint' => 255,
-                'null' => false
+                'type' => 'VARCHAR', // VARCHAR(255)
+                'constraint' => 255,
+                'null' => false,
             ],
             'created_at' => [
-                'type' =>'DATETIME',
-                'null'=>false,
+                'type' => 'DATETIME',
+                'null' => false,
             ],
-            'updated_at'=>[
-                'type' =>'DATETIME',
-                'null'=>false
+            'updated_at' => [
+                'type' => 'DATETIME',
+                'null' => false,
             ]
-                
-            ];
+        ];
 
-            $this->forge->addField($fields);
-            $this->forge->addPrimaryKey('id');
-            $this->forge->createTable('offices');
+        $this->forge->addField($fields);
+        $this->forge->addPrimaryKey('id');
+        $this->forge->createTable('offices');
     }
-
     public function down()
     {
         //
